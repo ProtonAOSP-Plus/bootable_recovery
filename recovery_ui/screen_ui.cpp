@@ -558,6 +558,7 @@ void ScreenRecoveryUI::draw_foreground_locked() {
   }
 }
 
+
 /* pixel blue: #227BF6 */
 void ScreenRecoveryUI::SetColor(UIElement e) const {
   switch (e) {
@@ -575,7 +576,7 @@ void ScreenRecoveryUI::SetColor(UIElement e) const {
         gr_color(0x22, 0x7b, 0xf6, 255);
       break;
     case UIElement::MENU_SEL_BG_ACTIVE:
-      gr_color(0, 156, 100, 255);
+      gr_color(255, 94, 94, 255);
       break;
     case UIElement::MENU_SEL_FG:
         gr_color(0xd8, 0xd8, 0xd8, 255);
@@ -1036,11 +1037,14 @@ bool ScreenRecoveryUI::Init(const std::string& locale) {
   error_text_ = LoadLocalizedBitmap("error_text");
 
   default_logo = LoadBitmap("logo_image");
+
   back_icon_ = LoadBitmap("ic_back");
   back_icon_sel_ = LoadBitmap("ic_back_sel");
   if (android::base::GetBoolProperty("ro.boot.dynamic_partitions", false) ||
       android::base::GetBoolProperty("ro.fastbootd.available", false)) {
     fastbootd_logo_ = LoadBitmap("fastbootd");
+  } else {
+    lineage_logo_ = LoadBitmap("logo_image");
   }
 
   // Background text for "installing_update" could be "installing update" or
